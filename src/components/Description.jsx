@@ -4,6 +4,8 @@ import { useState } from 'react';
 function Description({ onBack }) {
   // State för att visa/dölja modal-fönstret med mappstruktur
   const [showStructureModal, setShowStructureModal] = useState(false);
+  // State för att visa/dölja modal-fönstret med GitHub-information
+  const [showGitHubModal, setShowGitHubModal] = useState(false);
   
   // Öppna modal med mappstruktur
   const openStructureModal = () => {
@@ -13,6 +15,16 @@ function Description({ onBack }) {
   // Stäng modal
   const closeStructureModal = () => {
     setShowStructureModal(false);
+  };
+
+  // Öppna modal med GitHub-information
+  const openGitHubModal = () => {
+    setShowGitHubModal(true);
+  };
+  
+  // Stäng GitHub-modal
+  const closeGitHubModal = () => {
+    setShowGitHubModal(false);
   };
 
   // Funktion för att öppna filen med hjälp av JavaScript (inte längre används)
@@ -54,7 +66,13 @@ function Description({ onBack }) {
             >
               Visa detaljerad mappstruktur
             </button>
-            <p className="structure-note">Klicka på knappen för att öppna en detaljerad och visuell mappstruktur i ny flik</p>
+            <button 
+              className="structure-button github-button" 
+              onClick={openGitHubModal}
+            >
+              GitHub-integration
+            </button>
+            <p className="structure-note">Klicka på valfri knapp för att visa detaljerad information om projektets struktur eller GitHub-integration</p>
           </div>
           
           <div className="simple-structure">
@@ -286,6 +304,152 @@ function Description({ onBack }) {
                       </ul>
                     </li>
                   </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        
+        {/* Modal för att visa GitHub-integration */}
+        {showGitHubModal && (
+          <div className="structure-modal-overlay">
+            <div className="structure-modal">
+              <div className="structure-modal-header">
+                <h3>GitHub-integration: från lokal kod till repository</h3>
+                <button className="close-button" onClick={closeGitHubModal}>✕</button>
+              </div>
+              
+              <div className="structure-modal-content">
+                <div className="github-section">
+                  <h4>Vad är GitHub?</h4>
+                  <p>GitHub är en plattform för versionshantering och samarbete som gör det möjligt för utvecklare att lagra, hantera och spåra ändringar i sin kod. Det är byggt ovanpå Git, ett distribuerat versionskontrollsystem.</p>
+                  
+                  <h4>Fördelar med GitHub</h4>
+                  <ul>
+                    <li><strong>Versionshantering</strong> - Spåra alla ändringar i koden över tid</li>
+                    <li><strong>Samarbete</strong> - Flera utvecklare kan arbeta på samma projekt</li>
+                    <li><strong>Säkerhetskopiering</strong> - Din kod är säkert lagrad i molnet</li>
+                    <li><strong>Öppen källkod</strong> - Dela ditt arbete med andra utvecklare</li>
+                    <li><strong>CI/CD</strong> - Kontinuerlig integration och leverans</li>
+                  </ul>
+                  
+                  <h4>Steg för att överföra ett projekt till GitHub</h4>
+                  <div className="github-steps">
+                    <ol>
+                      <li>
+                        <strong>Skapa ett GitHub-konto</strong>
+                        <p>Besök <a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com</a> och registrera dig om du inte redan har ett konto.</p>
+                      </li>
+                      <li>
+                        <strong>Skapa ett nytt repository på GitHub</strong>
+                        <p>Klicka på "+" ikonen i övre högra hörnet och välj "New repository".</p>
+                        <p>Ge ditt repository ett namn (t.ex. "generativai-react") och klicka på "Create repository".</p>
+                      </li>
+                      <li>
+                        <strong>Installera Git lokalt</strong>
+                        <p>Ladda ner och installera Git från <a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer">git-scm.com</a>.</p>
+                      </li>
+                      <li>
+                        <strong>Initiera Git i ditt lokala projekt</strong>
+                        <p>Öppna Terminal eller PowerShell och navigera till din projektkatalog:</p>
+                        <pre><code>cd sökväg/till/ditt/projekt</code></pre>
+                        <p>Initiera Git i denna katalog:</p>
+                        <pre><code>git init</code></pre>
+                      </li>
+                      <li>
+                        <strong>Lägg till filer till Git</strong>
+                        <p>Lägg till alla filer i ditt projekt till Git staging area:</p>
+                        <pre><code>git add .</code></pre>
+                        <p>Detta förbereder alla filer för commit.</p>
+                      </li>
+                      <li>
+                        <strong>Commita dina ändringar</strong>
+                        <p>Skapa din första commit med ett beskrivande meddelande:</p>
+                        <pre><code>git commit -m "Initial commit"</code></pre>
+                      </li>
+                      <li>
+                        <strong>Koppla ditt lokala repository till GitHub</strong>
+                        <p>Lägg till GitHub-repositoryt som en remote:</p>
+                        <pre><code>git remote add origin https://github.com/användarnamn/repo-namn.git</code></pre>
+                        <p>Ersätt "användarnamn" med ditt GitHub-användarnamn och "repo-namn" med ditt repository-namn.</p>
+                      </li>
+                      <li>
+                        <strong>Pusha din kod till GitHub</strong>
+                        <p>Skicka din kod till GitHub:</p>
+                        <pre><code>git push -u origin master</code></pre>
+                        <p>Eller om du använder main som standardbranch:</p>
+                        <pre><code>git push -u origin main</code></pre>
+                      </li>
+                    </ol>
+                  </div>
+                  
+                  <h4>Viktigt att tänka på</h4>
+                  <ul>
+                    <li><strong>Känslig information</strong> - Placera aldrig API-nycklar, lösenord eller annan känslig information direkt i koden. Använd miljövariabler eller .env-filer som är listade i .gitignore.</li>
+                    <li><strong>.gitignore</strong> - Skapa alltid en .gitignore-fil som exkluderar onödiga filer som node_modules/, build/ och andra temporära filer.</li>
+                    <li><strong>Commitmeddelanden</strong> - Skriv tydliga och beskrivande commitmeddelanden som förklarar dina ändringar.</li>
+                    <li><strong>README.md</strong> - Skapa alltid en bra README-fil med information om ditt projekt, installationsinstruktioner och användning.</li>
+                  </ul>
+                  
+                  <h4>Vanliga Git-kommandon</h4>
+                  <div className="git-commands">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Kommando</th>
+                          <th>Beskrivning</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><code>git status</code></td>
+                          <td>Visa status för arbetskatalogen och staging area</td>
+                        </tr>
+                        <tr>
+                          <td><code>git add &lt;fil&gt;</code></td>
+                          <td>Lägg till en specifik fil till staging area</td>
+                        </tr>
+                        <tr>
+                          <td><code>git add .</code></td>
+                          <td>Lägg till alla ändrade filer till staging area</td>
+                        </tr>
+                        <tr>
+                          <td><code>git commit -m "meddelande"</code></td>
+                          <td>Commita ändringarna med ett beskrivande meddelande</td>
+                        </tr>
+                        <tr>
+                          <td><code>git push</code></td>
+                          <td>Skicka lokala commits till GitHub</td>
+                        </tr>
+                        <tr>
+                          <td><code>git pull</code></td>
+                          <td>Hämta ändringar från GitHub till lokala repository</td>
+                        </tr>
+                        <tr>
+                          <td><code>git branch</code></td>
+                          <td>Lista alla branches</td>
+                        </tr>
+                        <tr>
+                          <td><code>git checkout -b &lt;branch-namn&gt;</code></td>
+                          <td>Skapa och byt till en ny branch</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  
+                  <h4>Kontinuerligt arbetsflöde</h4>
+                  <p>Efter den initiala pushen, kan du fortsätta arbeta med ditt projekt och regelbundet pusha ändringar till GitHub:</p>
+                  <ol>
+                    <li>Gör ändringar i din kod</li>
+                    <li>Lägg till ändringarna: <code>git add .</code></li>
+                    <li>Commita ändringarna: <code>git commit -m "Beskrivning av ändringarna"</code></li>
+                    <li>Pusha till GitHub: <code>git push</code></li>
+                  </ol>
+                  
+                  <h4>GitHub och denna applikation</h4>
+                  <p>Detta React-projekt finns nu på GitHub och kan nås via:</p>
+                  <p><a href="https://github.com/kentlundgren/generativai-react" target="_blank" rel="noopener noreferrer">https://github.com/kentlundgren/generativai-react</a></p>
+                  <p>Repositoryt innehåller all källkod, inklusive komponenter, stilmallar och konfigurationsfiler.</p>
                 </div>
               </div>
             </div>
@@ -647,6 +811,111 @@ function Description({ onBack }) {
         
         .file-list > ul {
           padding-left: 0;
+        }
+        
+        /* GitHub knapp stil */
+        .github-button {
+          margin-left: 10px;
+          background-color: #2b3137;
+        }
+        
+        .github-button:hover {
+          background-color: #24292e;
+        }
+        
+        /* GitHub modal innehåll */
+        .github-section {
+          padding: 20px;
+        }
+        
+        .github-section h4 {
+          margin-top: 25px;
+          margin-bottom: 10px;
+          border-bottom: 1px solid #eaecef;
+          padding-bottom: 8px;
+        }
+        
+        .github-section h4:first-child {
+          margin-top: 0;
+        }
+        
+        .github-section ul, .github-section ol {
+          padding-left: 25px;
+          margin-bottom: 15px;
+        }
+        
+        .github-section li {
+          margin-bottom: 8px;
+        }
+        
+        .github-section pre {
+          background-color: #f6f8fa;
+          border-radius: 4px;
+          padding: 10px;
+          overflow-x: auto;
+          margin: 10px 0;
+        }
+        
+        .github-section code {
+          font-family: 'Consolas', 'Monaco', monospace;
+          background-color: #f6f8fa;
+          padding: 2px 5px;
+          border-radius: 3px;
+          font-size: 0.9em;
+        }
+        
+        .github-section pre code {
+          background-color: transparent;
+          padding: 0;
+        }
+        
+        .git-commands table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 15px 0;
+        }
+        
+        .git-commands th, .git-commands td {
+          border: 1px solid #dfe2e5;
+          padding: 8px 12px;
+          text-align: left;
+        }
+        
+        .git-commands th {
+          background-color: #f6f8fa;
+        }
+        
+        .github-steps ol {
+          counter-reset: step-counter;
+          list-style-type: none;
+          padding-left: 0;
+        }
+        
+        .github-steps li {
+          counter-increment: step-counter;
+          position: relative;
+          padding-left: 40px;
+          margin-bottom: 20px;
+        }
+        
+        .github-steps li::before {
+          content: counter(step-counter);
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          background-color: #0366d6;
+          color: white;
+          text-align: center;
+          line-height: 28px;
+          font-weight: bold;
+        }
+        
+        .github-steps strong {
+          display: block;
+          margin-bottom: 5px;
         }
       `}</style>
     </div>
