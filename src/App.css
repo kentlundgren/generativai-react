@@ -1,0 +1,392 @@
+/* App.css - Stilar specifika för huvudapplikationen */
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+/* Logotyper */
+.logo {
+  height: 2em;
+  padding: 0.5em;
+  will-change: filter;
+  transition: filter 300ms;
+  vertical-align: middle;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 1em var(--accent-color));
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 1em var(--accent-color));
+}
+
+/* Container för hela applikationen */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+}
+
+/* Header */
+header {
+  background: var(--header-bg);
+  color: var(--header-text);
+  padding: 2rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px var(--card-shadow);
+}
+
+header h1 {
+  margin-bottom: 0.5rem;
+}
+
+/* Flikar för navigering */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.tabs button {
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tabs button:hover:not(.active) {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.tabs button.active {
+  background-color: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+}
+
+/* Huvudinnehåll */
+main {
+  flex: 1;
+  margin-bottom: 2rem;
+}
+
+/* Gemensam stil för tabinnehåll */
+.tab-content {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: left;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px var(--card-shadow);
+}
+
+/* Tips-relaterade stilar */
+.tips-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.tip {
+  background-color: var(--table-header-bg);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 5px var(--card-shadow);
+}
+
+.tip h3 {
+  color: var(--accent-color);
+  margin-top: 0;
+}
+
+/* Visualiserings-relaterade stilar */
+.visualizations {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.process-diagram {
+  background-color: var(--table-header-bg);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.process-step {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.process-step:last-child {
+  border-bottom: none;
+}
+
+.process-step h4 {
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.comparison-table th, 
+.comparison-table td {
+  border: 1px solid var(--table-border);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.comparison-table th {
+  background-color: var(--table-header-bg);
+  font-weight: bold;
+}
+
+.application-chart {
+  margin-top: 1rem;
+}
+
+.usage-area {
+  background-color: var(--table-header-bg);
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bar {
+  height: 24px;
+  background-color: var(--accent-color);
+  border-radius: 3px;
+  transition: width 1s ease-in-out;
+}
+
+/* Quiz-relaterade stilar */
+.quiz-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.quiz-question {
+  background-color: var(--table-header-bg);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 5px var(--card-shadow);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.option:hover {
+  background-color: var(--table-header-bg);
+}
+
+.option.selected {
+  border-color: var(--accent-color);
+  background-color: rgba(52, 152, 219, 0.1);
+}
+
+.option input {
+  margin-right: 1rem;
+}
+
+.feedback {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.feedback.correct {
+  background-color: rgba(46, 204, 113, 0.2);
+  border: 1px solid #2ecc71;
+}
+
+.feedback.incorrect {
+  background-color: rgba(231, 76, 60, 0.2);
+  border: 1px solid #e74c3c;
+}
+
+.submit-btn {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.submit-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+.submit-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Lösnings-relaterade stilar */
+.solution-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.locked-content {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px var(--card-shadow);
+}
+
+.lock-icon {
+  width: 64px;
+  height: 64px;
+  margin: 1rem 0;
+}
+
+.solution-step {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.solution-step:last-child {
+  border-bottom: none;
+}
+
+.solution-step h3 {
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+}
+
+.implication {
+  background-color: var(--table-header-bg);
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+/* Beskrivnings-relaterade stilar */
+.description-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  text-align: left;
+  box-shadow: 0 2px 8px var(--card-shadow);
+}
+
+.description-content h1 {
+  color: var(--accent-color);
+  margin-bottom: 1.5rem;
+}
+
+.description-content section {
+  margin-bottom: 2rem;
+}
+
+.back-btn {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.back-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+pre.structure {
+  background-color: var(--code-bg);
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: monospace;
+  white-space: pre;
+  line-height: 1.4;
+}
+
+/* Infofönster */
+.info-button {
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.info-button:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+/* Footer */
+footer {
+  margin-top: auto;
+  padding: 1rem;
+  background-color: var(--card-bg);
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 -2px 5px var(--card-shadow);
+}
+
+footer p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+/* Responsiv design */
+@media (max-width: 768px) {
+  .tabs {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .tips-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .comparison-table th, 
+  .comparison-table td {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+}
